@@ -1,4 +1,5 @@
 import { ArrowRight, Zap, Rocket, TrendingUp, Globe2, Users, Shield, CheckCircle2, Star, ChevronRight } from 'lucide-react';
+import { SITE_ORIGIN } from '@/lib/site';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { SEO, StructuredData } from '../components/SEO';
@@ -16,7 +17,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         title="Ascend Capital Group | Ghana-Based Global Relocation Services"
         description="Expert visa, immigration, and relocation services from Ghana to UK, Canada, USA, Dubai, and Lisbon. 98% success rate. Ghana's trusted global mobility partner."
         keywords="Ghana relocation services, immigration services Ghana, visa assistance Ghana, relocation to UK from Ghana, Canada immigration Ghana, USA visa Ghana, Dubai relocation, Lisbon relocation, Accra immigration services"
-        canonical="https://acghana.com"
+        canonical={`${SITE_ORIGIN}/`}
       />
       <StructuredData type="Organization" />
       <Navigation currentPage="home" onNavigate={onNavigate} />

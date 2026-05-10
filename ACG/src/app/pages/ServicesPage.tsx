@@ -1,4 +1,5 @@
 import { Rocket, Globe2, TrendingUp, CheckCircle2, ArrowRight, FileText, Home, GraduationCap, Briefcase, Heart, Shield, Clock, DollarSign, Crown, Sparkles, Plane } from 'lucide-react';
+import { SITE_ORIGIN } from '@/lib/site';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { SEO, StructuredData } from '../components/SEO';
@@ -16,7 +17,7 @@ export function ServicesPage({ onNavigate }: ServicesPageProps) {
         title="Relocation Services | Visa, Immigration & VIP Services | ACG Ghana"
         description="Comprehensive relocation services from Ghana: Visa & immigration, destination setup, VIP white glove services. Specialized support for UK, Canada, USA, Dubai, Lisbon relocations."
         keywords="visa services Ghana, immigration services Accra, VIP relocation services, white glove relocation, Ghana to UK visa, Ghana to Canada immigration, destination services Ghana"
-        canonical="https://acghana.com/services"
+        canonical={`${SITE_ORIGIN}/services`}
       />
       <StructuredData type="Service" />
       <Navigation currentPage="services" onNavigate={onNavigate} />

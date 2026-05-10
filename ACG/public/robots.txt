@@ -6,7 +6,7 @@ Disallow: /admin
 Disallow: /portal
 
 # Sitemap
-Sitemap: https://acghana.com/sitemap.xml
+Sitemap: https://www.acghana.com/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1

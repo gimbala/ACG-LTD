@@ -1,5 +1,7 @@
+import { SITE_ORIGIN } from '@/lib/site';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
+import { SEO, StructuredData } from '../components/SEO';
 import { MessageSquare, Search, FileCheck, Plane, Home, TrendingUp, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
 
 type Page = 'home' | 'services' | 'process' | 'about' | 'contact' | 'portal' | 'admin' | 'logos';
@@ -9,6 +11,21 @@ interface ProcessPageProps {
 }
 
 export function ProcessPage({ onNavigate }: ProcessPageProps) {
+  return (
+    <>
+      <SEO
+        title="Our Process | How ACG Relocates You From Ghana | ACG"
+        description="Step-by-step: discovery call, strategy, documentation, visa prep, move, and settlement. Transparent timelines for Ghana-to-global relocation."
+        keywords="relocation process Ghana, visa process Ghana, immigration steps Ghana, ACG process"
+        canonical={`${SITE_ORIGIN}/process`}
+      />
+      <StructuredData type="Organization" />
+      <ProcessPageInner onNavigate={onNavigate} />
+    </>
+  );
+}
+
+function ProcessPageInner({ onNavigate }: ProcessPageProps) {
   const steps = [
     {
       number: "01",

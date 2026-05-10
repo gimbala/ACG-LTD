@@ -1,6 +1,7 @@
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Target, Users, Award, Globe2, Heart, Zap, TrendingUp, Shield } from 'lucide-react';
+import { SITE_ORIGIN } from '@/lib/site';
 import { SEO, StructuredData } from '../components/SEO';
 
 type Page = 'home' | 'services' | 'process' | 'about' | 'contact' | 'portal' | 'admin' | 'logos';
@@ -16,7 +17,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
         title="About ACG | Ghana's Leading Global Relocation Company"
         description="Founded in Accra, Ghana with hubs in Dubai and Lisbon. 5+ years helping Ghanaian professionals relocate worldwide. Expert team, proven track record, 100+ success stories."
         keywords="about ACG Ghana, Ghana relocation company, Accra immigration experts, global mobility Ghana, international relocation Ghana, Ghana to world migration"
-        canonical="https://acghana.com/about"
+        canonical={`${SITE_ORIGIN}/about`}
       />
       <StructuredData type="LocalBusiness" />
       <Navigation currentPage="about" onNavigate={onNavigate} />

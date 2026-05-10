@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Calendar } from 'lucide
 import { SEO } from '../components/SEO';
 import { getSupabase } from '@/lib/supabase';
 import { isSupabaseConfigured } from '@/lib/supabase-config';
+import { SITE_ORIGIN } from '@/lib/site';
 
 type Page = 'home' | 'services' | 'process' | 'about' | 'contact' | 'portal' | 'admin' | 'logos';
 
@@ -93,7 +94,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
         title="Contact ACG | Free Relocation Consultation | Ghana"
         description="Book your free 30-minute consultation with ACG. Get expert guidance on visa, immigration, and relocation from Ghana. Response within 24 hours. Email: hello@acghana.com"
         keywords="contact ACG Ghana, free relocation consultation, Ghana immigration consultation, visa consultation Ghana, relocation quote Ghana"
-        canonical="https://acghana.com/contact"
+        canonical={`${SITE_ORIGIN}/contact`}
       />
       <Navigation currentPage="contact" onNavigate={onNavigate} />
 

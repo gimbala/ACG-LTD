@@ -6,7 +6,7 @@
 
   <!-- Home Page -->
   <url>
-    <loc>https://acghana.com/</loc>
+    <loc>https://www.acghana.com/</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Services Page -->
   <url>
-    <loc>https://acghana.com/services</loc>
+    <loc>https://www.acghana.com/services</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!-- Process Page -->
   <url>
-    <loc>https://acghana.com/process</loc>
+    <loc>https://www.acghana.com/process</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
   <!-- About Page -->
   <url>
-    <loc>https://acghana.com/about</loc>
+    <loc>https://www.acghana.com/about</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -38,7 +38,7 @@
 
   <!-- Contact Page -->
   <url>
-    <loc>https://acghana.com/contact</loc>
+    <loc>https://www.acghana.com/contact</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -46,7 +46,7 @@
 
   <!-- Client Portal -->
   <url>
-    <loc>https://acghana.com/portal</loc>
+    <loc>https://www.acghana.com/portal</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>

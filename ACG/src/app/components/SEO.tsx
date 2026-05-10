@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { defaultOgImageUrl, SITE_ORIGIN } from '@/lib/site';
 
 interface SEOProps {
   title?: string;
@@ -6,6 +7,7 @@ interface SEOProps {
   keywords?: string;
   ogType?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   canonical?: string;
 }
 
@@ -14,33 +16,36 @@ export function SEO({
   description = 'ACG provides expert visa, immigration, and relocation services from Ghana to the world. Helping Ghanaian professionals relocate to the UK, Canada, USA, Dubai, and Lisbon with 98% success rate.',
   keywords = 'Ghana relocation services, immigration services Ghana, visa assistance Ghana, relocation to UK from Ghana, Canada immigration Ghana, USA visa Ghana, Dubai relocation, Lisbon relocation, Accra immigration services, global mobility Ghana',
   ogType = 'website',
-  ogImage = 'https://acghana.com/og-image.jpg',
-  canonical = 'https://acghana.com'
+  ogImage = defaultOgImageUrl,
+  ogImageAlt = 'ACG — Ascend Capital Group, global relocation from Ghana',
+  canonical = SITE_ORIGIN,
 }: SEOProps) {
   useEffect(() => {
-    // Update document title
     document.title = title;
 
-    // Update meta tags
     updateMetaTag('description', description);
     updateMetaTag('keywords', keywords);
 
-    // Open Graph tags
+    updateMetaTag('og:site_name', 'ACG — Ascend Capital Group', 'property');
+    updateMetaTag('og:locale', 'en_GH', 'property');
     updateMetaTag('og:title', title, 'property');
     updateMetaTag('og:description', description, 'property');
     updateMetaTag('og:type', ogType, 'property');
     updateMetaTag('og:image', ogImage, 'property');
+    updateMetaTag('og:image:type', ogImage.endsWith('.svg') ? 'image/svg+xml' : 'image/jpeg', 'property');
+    updateMetaTag('og:image:width', '1200', 'property');
+    updateMetaTag('og:image:height', '630', 'property');
+    updateMetaTag('og:image:alt', ogImageAlt, 'property');
     updateMetaTag('og:url', canonical, 'property');
 
-    // Twitter Card tags
     updateMetaTag('twitter:card', 'summary_large_image', 'name');
     updateMetaTag('twitter:title', title, 'name');
     updateMetaTag('twitter:description', description, 'name');
     updateMetaTag('twitter:image', ogImage, 'name');
+    updateMetaTag('twitter:image:alt', ogImageAlt, 'name');
 
-    // Canonical link
     updateCanonicalLink(canonical);
-  }, [title, description, keywords, ogType, ogImage, canonical]);
+  }, [title, description, keywords, ogType, ogImage, ogImageAlt, canonical]);
 
   return null;
 }
@@ -82,8 +87,8 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       '@type': 'Organization',
       name: 'Ascend Capital Group',
       alternateName: 'ACG Ghana',
-      url: 'https://acghana.com',
-      logo: 'https://acghana.com/logo.png',
+      url: SITE_ORIGIN,
+      logo: `${SITE_ORIGIN}/og.svg`,
       description: 'Expert visa, immigration, and relocation services from Ghana to the world',
       address: {
         '@type': 'PostalAddress',
@@ -112,9 +117,9 @@ export function StructuredData({ type, data }: StructuredDataProps) {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'Ascend Capital Group',
-      image: 'https://acghana.com/logo.png',
-      '@id': 'https://acghana.com',
-      url: 'https://acghana.com',
+      image: `${SITE_ORIGIN}/og.svg`,
+      '@id': SITE_ORIGIN,
+      url: SITE_ORIGIN,
       telephone: '+233-24-123-4567',
       priceRange: '$$',
       address: {
