@@ -1,0 +1,25 @@
+# robots.txt for Ascend Capital Group
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /portal
+
+# Sitemap
+Sitemap: https://acghana.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
