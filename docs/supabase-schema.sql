@@ -182,3 +182,6 @@ create trigger on_auth_user_created
 
 -- Storage bucket for client documents (optional; create bucket "client-docs" in UI if needed)
 -- Policies can be added once the bucket exists.
+
+-- Booking confirmation emails: deploy Edge Function `send-booking-confirmation`
+-- (see /supabase/functions/send-booking-confirmation/) and set Resend secrets in Dashboard.

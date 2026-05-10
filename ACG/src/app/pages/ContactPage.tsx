@@ -40,21 +40,39 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
         return;
       }
       setSubmitting(true);
-      const { error } = await sb.from('consultation_requests').insert({
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email: formData.email,
-        phone: formData.phone || null,
-        current_location: formData.currentLocation,
-        destination_country: formData.destinationCountry,
-        timeline: formData.timeline,
-        relocation_type: formData.relocationType,
-        message: formData.message || null,
-      });
-      setSubmitting(false);
-      if (error) {
-        setSubmitError(error.message);
+      const { data: inserted, error } = await sb
+        .from('consultation_requests')
+        .insert({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone || null,
+          current_location: formData.currentLocation,
+          destination_country: formData.destinationCountry,
+          timeline: formData.timeline,
+          relocation_type: formData.relocationType,
+          message: formData.message || null,
+        })
+        .select('id')
+        .single();
+
+      if (error || !inserted?.id) {
+        setSubmitting(false);
+        setSubmitError(error?.message ?? 'Could not save your request.');
         return;
+      }
+
+      const { error: emailError } = await sb.functions.invoke(
+        'send-booking-confirmation',
+        {
+          body: { consultation_id: inserted.id },
+        }
+      );
+
+      setSubmitting(false);
+
+      if (emailError) {
+        console.warn('Confirmation email could not be sent:', emailError.message);
       }
     }
 
