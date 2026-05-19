@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ProcessPage } from './pages/ProcessPage';
@@ -9,7 +9,13 @@ import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { LogoShowcase } from './components/LogoShowcase';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'services' | 'process' | 'about' | 'contact' | 'portal' | 'admin' | 'logos'>('home');
+  const [currentPage, setCurrentPage] = useState<
+    'home' | 'services' | 'process' | 'about' | 'contact' | 'portal' | 'admin' | 'logos'
+  >('home');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -34,5 +40,17 @@ export default function App() {
     }
   };
 
-  return <div className="min-h-screen">{renderPage()}</div>;
+  return (
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-[#1E1B4B] focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+      <main id="main-content" className="min-h-screen">
+        {renderPage()}
+      </main>
+    </>
+  );
 }

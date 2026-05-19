@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Lock, Shield } from 'lucide-react';
 import { ACGLogo, ACGLogoHorizontal } from './logos/ACGLogo';
+import { btnNav, btnPrimary, focusRing, touchMin } from '@/lib/ui-classes';
 
 type Page = 'home' | 'services' | 'process' | 'about' | 'contact' | 'portal' | 'admin' | 'logos';
 
@@ -20,16 +21,25 @@ export function Navigation({ currentPage, onNavigate, variant = 'primary' }: Nav
     { id: 'contact' as Page, label: 'Contact' },
   ];
 
-  const isWhite = variant === 'white';
-  const textColor = isWhite ? 'text-white' : 'text-white';
-  const hoverColor = isWhite ? 'hover:text-[#F97316]' : 'hover:text-[#F97316]';
-  const bgColor = isWhite ? 'bg-[#1E1B4B]' : 'bg-[#1E1B4B]';
+  const bgColor = variant === 'white' ? 'bg-[#1E1B4B]' : 'bg-[#1E1B4B]';
+  const textColor = 'text-white';
+  const hoverColor = 'hover:text-[#F97316]';
+
+  const navigate = (page: Page) => {
+    onNavigate(page);
+    setMobileMenuOpen(false);
+  };
 
   return (
-    <nav className={`${bgColor} relative overflow-hidden`}>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#6366F1] via-transparent to-[#F97316] opacity-20"></div>
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-10">
-        <button onClick={() => onNavigate('home')} className="focus:outline-none">
+    <nav className={`${bgColor} relative overflow-hidden`} aria-label="Main navigation">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#6366F1] via-transparent to-[#F97316] opacity-20" />
+      <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
+        <button
+          type="button"
+          onClick={() => navigate('home')}
+          className={`${focusRing} rounded-lg`}
+          aria-label="ACG home"
+        >
           <div className="hidden md:block">
             <ACGLogo variant="white" size="default" />
           </div>
@@ -37,13 +47,15 @@ export function Navigation({ currentPage, onNavigate, variant = 'primary' }: Nav
             <ACGLogoHorizontal variant="white" size="small" />
           </div>
         </button>
-        
-        <div className="hidden md:flex items-center gap-8">
+
+        <div className="hidden items-center gap-6 md:flex lg:gap-8">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => onNavigate(item.id)}
-              className={`${textColor} ${hoverColor} transition-colors ${
+              type="button"
+              onClick={() => navigate(item.id)}
+              aria-current={currentPage === item.id ? 'page' : undefined}
+              className={`${btnNav} ${textColor} ${hoverColor} ${
                 currentPage === item.id ? 'text-[#F97316]' : ''
               }`}
             >
@@ -51,80 +63,74 @@ export function Navigation({ currentPage, onNavigate, variant = 'primary' }: Nav
             </button>
           ))}
           <button
-            onClick={() => onNavigate('portal')}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded transition-all"
+            type="button"
+            onClick={() => navigate('portal')}
+            className={`${btnNav} flex items-center gap-2 bg-white/10 text-white hover:bg-white/20`}
           >
-            <Lock className="w-4 h-4" />
+            <Lock className="h-4 w-4" aria-hidden />
             Client Portal
           </button>
           <button
-            onClick={() => onNavigate('admin')}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded transition-all"
+            type="button"
+            onClick={() => navigate('admin')}
+            className={`${btnNav} flex items-center gap-2 bg-white/10 text-white hover:bg-white/20`}
           >
-            <Shield className="w-4 h-4" />
+            <Shield className="h-4 w-4" aria-hidden />
             Admin
           </button>
-          <button
-            onClick={() => onNavigate('contact')}
-            className="bg-gradient-to-r from-[#6366F1] to-[#F97316] text-white px-6 py-2 hover:shadow-lg hover:scale-105 transition-all"
-          >
+          <button type="button" onClick={() => navigate('contact')} className={btnPrimary}>
             Get Started →
           </button>
         </div>
-        
-        <button 
-          className={`md:hidden ${textColor}`}
+
+        <button
+          type="button"
+          className={`${touchMin} flex items-center justify-center rounded-lg p-2 md:hidden ${textColor} ${focusRing}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-nav-menu"
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className={`md:hidden ${bgColor} border-t border-white/10`}>
-          <div className="px-6 py-4 space-y-4">
+        <div
+          id="mobile-nav-menu"
+          className={`${bgColor} border-t border-white/10 md:hidden`}
+        >
+          <div className="space-y-2 px-4 py-4 pb-6">
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => {
-                  onNavigate(item.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`block w-full text-left ${textColor} ${hoverColor} transition-colors py-2 ${
-                  currentPage === item.id ? 'text-[#F97316]' : ''
+                type="button"
+                onClick={() => navigate(item.id)}
+                aria-current={currentPage === item.id ? 'page' : undefined}
+                className={`${touchMin} block w-full rounded-lg px-3 py-3 text-left text-base ${textColor} ${hoverColor} ${focusRing} ${
+                  currentPage === item.id ? 'bg-white/10 text-[#F97316]' : ''
                 }`}
               >
                 {item.label}
               </button>
             ))}
             <button
-              onClick={() => {
-                onNavigate('portal');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded transition-all"
+              type="button"
+              onClick={() => navigate('portal')}
+              className={`${touchMin} flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 px-6 py-3 text-white ${focusRing}`}
             >
-              <Lock className="w-4 h-4" />
+              <Lock className="h-4 w-4" aria-hidden />
               Client Portal
             </button>
             <button
-              onClick={() => {
-                onNavigate('admin');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded transition-all"
+              type="button"
+              onClick={() => navigate('admin')}
+              className={`${touchMin} flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 px-6 py-3 text-white ${focusRing}`}
             >
-              <Shield className="w-4 h-4" />
+              <Shield className="h-4 w-4" aria-hidden />
               Admin Dashboard
             </button>
-            <button
-              onClick={() => {
-                onNavigate('contact');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full bg-gradient-to-r from-[#6366F1] to-[#F97316] text-white px-6 py-3 hover:shadow-lg transition-all"
-            >
+            <button type="button" onClick={() => navigate('contact')} className={`${btnPrimary} w-full py-4`}>
               Get Started →
             </button>
           </div>

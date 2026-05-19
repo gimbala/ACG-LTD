@@ -1,5 +1,6 @@
 import { ArrowRight, Zap, Rocket, TrendingUp, Globe2, Users, Shield, CheckCircle2, Star, ChevronRight } from 'lucide-react';
 import { SITE_ORIGIN } from '@/lib/site';
+import { btnPrimary, btnSecondary } from '@/lib/ui-classes';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { SEO, StructuredData } from '../components/SEO';
@@ -23,7 +24,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <Navigation currentPage="home" onNavigate={onNavigate} />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1E1B4B] via-[#6366F1] to-[#F97316] text-white py-32 overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#1E1B4B] via-[#6366F1] to-[#F97316] py-16 text-white sm:py-24 md:py-32">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-1 h-32 bg-white opacity-40 rotate-45 animate-pulse"></div>
           <div className="absolute top-40 right-32 w-1 h-24 bg-[#F97316] opacity-60 -rotate-45"></div>
@@ -35,14 +36,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="absolute bottom-1/4 left-1/4 w-48 h-48 border border-white/10 transform -rotate-12"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 mb-8 animate-fade-in">
               <Zap className="w-4 h-4 text-[#F97316]" />
               <span className="text-white text-sm tracking-wider uppercase">Ghana-Based • Global Reach • Since 2019</span>
             </div>
             
-            <h1 className="text-6xl md:text-7xl lg:text-8xl mb-8 text-white tracking-tight leading-tight" style={{fontWeight: 800}}>
+            <h1 className="mb-6 text-4xl leading-tight tracking-tight text-white sm:mb-8 sm:text-6xl md:text-7xl lg:text-8xl" style={{fontWeight: 800}}>
               Don't Just Move.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F97316] via-[#FBBF24] to-[#F97316]">Ascend.</span>
             </h1>
@@ -51,19 +52,19 @@ export function HomePage({ onNavigate }: HomePageProps) {
               Bold relocations for bold people. We turn international moves into launching pads for your next chapter. <span className="text-[#F97316]">Fast. Fearless. Forward.</span>
             </p>
             
-            <div className="flex flex-wrap gap-4 mb-12">
-              <button 
+            <div className="mb-10 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:flex-wrap sm:gap-4">
+              <button
+                type="button"
                 onClick={() => onNavigate('contact')}
-                className="bg-gradient-to-r from-[#F97316] to-[#FBBF24] text-[#1E1B4B] px-10 py-5 hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-2 group" 
-                style={{fontWeight: 700}}
+                className={`${btnPrimary} w-full bg-gradient-to-r from-[#F97316] to-[#FBBF24] px-8 py-4 text-[#1E1B4B] sm:w-auto sm:px-10 sm:py-5 group`}
               >
-                START YOUR JOURNEY NOW 
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                START YOUR JOURNEY NOW
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
               </button>
-              <button 
+              <button
+                type="button"
                 onClick={() => onNavigate('process')}
-                className="bg-white/10 backdrop-blur-sm text-white px-10 py-5 hover:bg-white/20 transition-colors border border-white/30" 
-                style={{fontWeight: 700}}
+                className={`${btnSecondary} w-full sm:w-auto sm:px-10 sm:py-5`}
               >
                 SEE HOW IT WORKS
               </button>
@@ -270,13 +271,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <p className="text-white/90 mb-10 text-xl max-w-2xl mx-auto leading-relaxed">
             Book a free 30-minute strategy session. Let's map out your move and make it happen. No pressure, just expert guidance.
           </p>
-          <button 
+          <button
+            type="button"
             onClick={() => onNavigate('contact')}
-            className="bg-white text-[#6366F1] px-12 py-5 hover:bg-[#F97316] hover:text-white transition-all hover:scale-110 shadow-2xl text-lg inline-flex items-center gap-3" 
-            style={{fontWeight: 700}}
+            className={`${btnPrimary} w-full max-w-md bg-white px-8 py-4 text-lg text-[#6366F1] shadow-2xl hover:bg-[#F97316] hover:text-white sm:w-auto sm:px-12 sm:py-5`}
           >
-            BOOK YOUR FREE SESSION NOW 
-            <ArrowRight className="w-6 h-6" />
+            BOOK YOUR FREE SESSION NOW
+            <ArrowRight className="h-6 w-6" aria-hidden />
           </button>
           
           <p className="text-white/70 text-sm mt-6">Free consultation · No commitment · Expert advice in 30 minutes</p>
