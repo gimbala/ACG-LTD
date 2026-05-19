@@ -1,0 +1,8 @@
+{
+  "name": "acg-ltd-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "npm run build --prefix ACG",
+    "dev": "npm run dev --prefix ACG"
+  }
+}
